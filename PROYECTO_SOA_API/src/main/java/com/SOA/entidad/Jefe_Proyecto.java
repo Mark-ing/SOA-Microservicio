@@ -32,6 +32,10 @@ public class Jefe_Proyecto {
 	@Column(name = "JP_Apellido")
     private String apellido;
 	
+	@ManyToOne
+    @JoinColumn(name = "ID_Usuarios")
+    private Usuarios usuario;
+	
 	@OneToMany(mappedBy = "jefe_proyecto")
     @JsonIgnore
     private List<Proyecto> proyecto;

@@ -31,11 +31,11 @@ public class Proyecto {
 
     @ManyToOne
     @JoinColumn(name = "ID_Equipo")
-    private Equipo idEquipo;
+    private Equipo equipo;
     
     @ManyToOne
-    @JoinColumn(name = "ID_Equipo")
-    private Jefe_Proyecto idJefePro;
+    @JoinColumn(name = "ID_JefePro")
+    private Jefe_Proyecto jefe_proyecto;
 
     @Column(name = "nombre_proyecto")
     private String nombreProyecto;

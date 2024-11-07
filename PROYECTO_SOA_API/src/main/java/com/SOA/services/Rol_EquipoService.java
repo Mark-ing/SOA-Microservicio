@@ -3,10 +3,12 @@ package com.SOA.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.SOA.entidad.Rol_Equipo;
 import com.SOA.repository.Rol_EquipoRepository;
 
+@Service
 public class Rol_EquipoService {
 
 	//inyeccion de dependencia

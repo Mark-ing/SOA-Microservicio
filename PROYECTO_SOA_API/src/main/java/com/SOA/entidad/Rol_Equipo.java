@@ -15,6 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -37,17 +38,14 @@ public class Rol_Equipo {
 	//------------------------------------------
     //asociacion con las otras tablas
 	
-    @ManyToAny
-    @JoinTable(
-    		name = "equipo_empleado",
-    		joinColumns = @JoinColumn(
-    				name = "ID_Rol_Equipo",
-    				referencedColumnName = "idrolEquipo"),
-    		inverseJoinColumns = @JoinColumn(
-    				name = "ID_Equipo",
-    	    		referencedColumnName = "idEquipo")
-    		)
+	@OneToMany(mappedBy = "rol_equipo")
     @JsonIgnore
-    private List<Equipo> equipos;
+    private List<Empleado> empleados;
+	
+	/*
+	 * @ManyToAny
+	 * 
+	 * @JsonIgnore private List<Equipo> equipos;
+	 */
     
 }

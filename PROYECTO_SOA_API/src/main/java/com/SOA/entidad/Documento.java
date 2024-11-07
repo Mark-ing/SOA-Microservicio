@@ -26,7 +26,7 @@ public class Documento {
 
     @ManyToOne
     @JoinColumn(name = "ID_Proyecto")
-    private Proyecto idProyecto;
+    private Proyecto proyecto;
 
     @Column(name = "Ruta_Carpeta")
     private String rutacarpeta;

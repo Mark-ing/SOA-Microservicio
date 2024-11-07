@@ -1,8 +1,10 @@
 package com.SOA.entidad;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,22 +17,20 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name="usuarios_sesiones")
+@Table(name = "equipo_empleado")
 @Data
-public class Usuarios_Sesiones {
+public class Equipo_Empleado {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_Sesiones")
-    private Integer IDSesiones;
+    @Column(name = "ID_Equipo_Empleado")
+    private Integer IDEquipo_Empleado;
 	
-	@ManyToOne
-    @JoinColumn(name = "ID_Usuario")
-    private Usuarios usuario;
-	
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    @Column(name = "Fecha_Ingreso")
-    private LocalDate fecha_ingreso;
-	
-	
+	 @ManyToOne
+	 @JoinColumn(name = "ID_Equipo")
+	 private Equipo equipo;
+	 
+	 @ManyToOne
+	 @JoinColumn(name = "ID_Empleado")
+	 private Empleado empleado;
 }

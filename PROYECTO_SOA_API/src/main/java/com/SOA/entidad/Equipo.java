@@ -40,11 +40,14 @@ public class Equipo {
     @JsonIgnore
     private List<Proyecto> proyectos;
 
-    @ManyToMany(mappedBy = "equipo")
+    @OneToMany(mappedBy = "equipo")
     @JsonIgnore
-    private List<Empleado> empleados;
+    private List<Equipo_Empleado> equipos_empleados;
     
-    @ManyToMany(mappedBy = "equipo")
-    @JsonIgnore
-    private List<Rol_Equipo> roles_equipo;
+	/*
+	 * @ManyToMany(mappedBy = "equipo")
+	 * 
+	 * @JsonIgnore private List<Empleado> empleados;
+	 */
+   
 }

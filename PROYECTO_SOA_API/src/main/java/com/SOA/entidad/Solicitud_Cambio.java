@@ -29,7 +29,7 @@ public class Solicitud_Cambio {
 
 	@ManyToOne
 	@JoinColumn(name = "id_jefe_area")
-	private Jefe_Area jefeArea;
+	private Jefe_Area jefe_area;
 
 	@Column(name = "descripcion")
 	private String descripcion;

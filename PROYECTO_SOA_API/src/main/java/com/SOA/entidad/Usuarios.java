@@ -28,7 +28,7 @@ public class Usuarios {
 
     @ManyToOne
     @JoinColumn(name = "ID_Rol")
-    private Rol_Usuarios rol; // Relación con Rol
+    private Rol_Usuarios rol_usuarios; // Relación con Rol
 
     @ManyToOne
     @JoinColumn(name = "ID_Area")
@@ -37,7 +37,7 @@ public class Usuarios {
     @Column(name = "correo")
     private String correo;
 
-    @Column(name = "contrasena")
+    @Column(name = "contraseña")
     private String contrasena;
     
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
