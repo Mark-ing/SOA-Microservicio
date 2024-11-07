@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.SOA.entidad.Usuarios_Sesiones;
-import com.SOA.services.Usuarios_SesionesService;
+import com.SOA.servicesImpl.Usuarios_SesionesService;
 
 @RestController
 @RequestMapping("/usuarios_sesiones")

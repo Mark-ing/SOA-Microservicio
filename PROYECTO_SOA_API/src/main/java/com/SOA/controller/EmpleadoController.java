@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.SOA.entidad.Empleado;
-import com.SOA.services.EmpleadoService;
+import com.SOA.servicesImpl.EmpleadoService;
 
 @RestController
 @RequestMapping("/empleado")

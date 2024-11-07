@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.SOA.entidad.Rol_Usuarios;
-import com.SOA.services.Rol_UsuariosService;
+import com.SOA.servicesImpl.Rol_UsuariosService;
 
 @RestController
 @RequestMapping("/rol_usuarios")

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.SOA.entidad.Area;
-import com.SOA.services.AreaService;
+import com.SOA.servicesImpl.AreaService;
 
 @RestController
 @RequestMapping("/area")
