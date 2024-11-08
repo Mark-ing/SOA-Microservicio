@@ -13,31 +13,30 @@ public abstract class ICRUDImpl<T,ID> implements ICRUD<T, ID>{
 	@Override
 	public T registrar(T bean) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return getJpaRepository().save(bean);
 	}
 
 	@Override
 	public T actualizar(T bean) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return getJpaRepository().save(bean);
 	}
 
 	@Override
 	public void eliminar(ID cod) throws Exception {
-		// TODO Auto-generated method stub
-		
+		getJpaRepository().deleteById(cod);	
 	}
 
 	@Override
 	public List<T> listar() throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return getJpaRepository().findAll();
 	}
 
 	@Override
 	public T buscar(ID cod) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return getJpaRepository().findById(cod).orElse(null);
 	}
 
 	

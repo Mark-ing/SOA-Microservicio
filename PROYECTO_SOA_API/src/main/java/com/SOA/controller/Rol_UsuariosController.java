@@ -1,7 +1,9 @@
 package com.SOA.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.SOA.dto.Rol_UsuariosDTO;
 import com.SOA.entidad.Rol_Usuarios;
 import com.SOA.servicesImpl.Rol_UsuariosService;
 
@@ -22,28 +25,40 @@ public class Rol_UsuariosController {
 	@Autowired
 	private Rol_UsuariosService servicioRol_Usuarios;
 	
+	@Autowired
+	private ModelMapper mapper;
+	
 	@GetMapping("/listar")
-	public List<Rol_Usuarios> listado() {
-		return servicioRol_Usuarios.listar();
+	public List<Rol_UsuariosDTO> listado() throws Exception{
+		List<Rol_UsuariosDTO> lista=servicioRol_Usuarios.listar().stream().map(p->
+			mapper.map(p, Rol_UsuariosDTO.class)).collect(Collectors.toList());
+		return lista;
 	}
 	
 	@GetMapping("/consultarPorId/{codigo}")
-	public Rol_Usuarios consulta(@PathVariable("codigo") Integer cod) {
-		return servicioRol_Usuarios.buscar(cod);
+	public Rol_UsuariosDTO consulta(@PathVariable("codigo") Integer cod) throws Exception{
+		Rol_Usuarios bean=servicioRol_Usuarios.buscar(cod);
+		return mapper.map(bean, Rol_UsuariosDTO.class);
 	}
 	
 	@PostMapping("/registrar")
-	public void registrar(@RequestBody Rol_Usuarios area) {
-		servicioRol_Usuarios.registrar(area);
+	public Rol_UsuariosDTO registrar(@RequestBody Rol_UsuariosDTO rolus) throws Exception{
+		Rol_Usuarios bean=null;
+		bean=mapper.map(rolus, Rol_Usuarios.class);
+		bean=servicioRol_Usuarios.registrar(bean);
+		return mapper.map(bean, Rol_UsuariosDTO.class);
 	}
 	
 	@PutMapping("/actualizar")
-	public void actualizar(@RequestBody Rol_Usuarios area) {
-		servicioRol_Usuarios.actualizar(area);
+	public Rol_UsuariosDTO actualizar(@RequestBody Rol_UsuariosDTO rolus) throws Exception{
+		Rol_Usuarios bean=null;
+		bean=mapper.map(rolus, Rol_Usuarios.class);
+		bean=servicioRol_Usuarios.actualizar(bean);
+		return mapper.map(bean, Rol_UsuariosDTO.class);
 	}
 	
 	@DeleteMapping("/eliminarPorId/{codigo}")
-	public void eliminar(@PathVariable("codigo") Integer cod) {
+	public void eliminar(@PathVariable("codigo") Integer cod) throws Exception{
 		servicioRol_Usuarios.eliminar(cod);
 	}
 }

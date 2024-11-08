@@ -23,17 +23,4 @@ public class AreaService extends ICRUDImpl<Area, Integer>{
 		return repo;
 	}
 
-	
-	
-	/*
-	 * public void registrar(Area bean) { repo.save(bean); }
-	 * 
-	 * public void actualizar(Area bean) { repo.save(bean); }
-	 * 
-	 * public void eliminar(Integer cod) { repo.deleteById(cod); }
-	 * 
-	 * public List<Area> listar() { return repo.findAll(); }
-	 * 
-	 * public Area buscar(Integer cod) { return repo.findById(cod).orElse(null); }
-	 */
 }

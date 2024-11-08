@@ -1,7 +1,9 @@
 package com.SOA.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.SOA.dto.Usuarios_SesionesDTO;
 import com.SOA.entidad.Usuarios_Sesiones;
 import com.SOA.servicesImpl.Usuarios_SesionesService;
 
@@ -22,28 +25,40 @@ public class Usuarios_SesionesController {
 	@Autowired
 	private Usuarios_SesionesService servicioUsuarios_Sesiones;
 	
+	@Autowired
+	private ModelMapper mapper;
+	
 	@GetMapping("/listar")
-	public List<Usuarios_Sesiones> listado() {
-		return servicioUsuarios_Sesiones.listar();
+	public List<Usuarios_SesionesDTO> listado() throws Exception{
+		List<Usuarios_SesionesDTO> lista=servicioUsuarios_Sesiones.listar().stream().map(p->
+			mapper.map(p, Usuarios_SesionesDTO.class)).collect(Collectors.toList());
+		return lista;
 	}
 	
 	@GetMapping("/consultarPorId/{codigo}")
-	public Usuarios_Sesiones consulta(@PathVariable("codigo") Integer cod) {
-		return servicioUsuarios_Sesiones.buscar(cod);
+	public Usuarios_SesionesDTO consulta(@PathVariable("codigo") Integer cod) throws Exception{
+		Usuarios_Sesiones bean=servicioUsuarios_Sesiones.buscar(cod);
+		return mapper.map(bean, Usuarios_SesionesDTO.class);
 	}
 	
 	@PostMapping("/registrar")
-	public void registrar(@RequestBody Usuarios_Sesiones area) {
-		servicioUsuarios_Sesiones.registrar(area);
+	public Usuarios_SesionesDTO registrar(@RequestBody Usuarios_SesionesDTO usse) throws Exception{
+		Usuarios_Sesiones bean=null;
+		bean=mapper.map(usse, Usuarios_Sesiones.class);
+		bean=servicioUsuarios_Sesiones.registrar(bean);
+		return mapper.map(bean, Usuarios_SesionesDTO.class);
 	}
 	
 	@PutMapping("/actualizar")
-	public void actualizar(@RequestBody Usuarios_Sesiones area) {
-		servicioUsuarios_Sesiones.actualizar(area);
+	public Usuarios_SesionesDTO actualizar(@RequestBody Usuarios_SesionesDTO usse) throws Exception{
+		Usuarios_Sesiones bean=null;
+		bean=mapper.map(usse, Usuarios_Sesiones.class);
+		bean=servicioUsuarios_Sesiones.actualizar(bean);
+		return mapper.map(bean, Usuarios_SesionesDTO.class);
 	}
 	
 	@DeleteMapping("/eliminarPorId/{codigo}")
-	public void eliminar(@PathVariable("codigo") Integer cod) {
+	public void eliminar(@PathVariable("codigo") Integer cod) throws Exception{
 		servicioUsuarios_Sesiones.eliminar(cod);
 	}
 }

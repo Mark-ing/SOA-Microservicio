@@ -1,7 +1,9 @@
 package com.SOA.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.SOA.dto.AreaDTO;
 import com.SOA.entidad.Area;
 import com.SOA.servicesImpl.AreaService;
 
@@ -22,28 +25,40 @@ public class AreaController {
 	@Autowired
 	private AreaService servicioArea;
 	
+	@Autowired
+	private ModelMapper mapper;
+	
 	@GetMapping("/listar")
-	public List<Area> listado() {
-		return servicioArea.listar();
+	public List<AreaDTO> listado() throws Exception{
+		List<AreaDTO> lista=servicioArea.listar().stream().map(p->
+			mapper.map(p, AreaDTO.class)).collect(Collectors.toList());
+		return lista;
 	}
 	
 	@GetMapping("/consultarPorId/{codigo}")
-	public Area consulta(@PathVariable("codigo") Integer cod) {
-		return servicioArea.buscar(cod);
+	public AreaDTO consulta(@PathVariable("codigo") Integer cod) throws Exception{
+		Area bean=servicioArea.buscar(cod);
+		return mapper.map(bean, AreaDTO.class);
 	}
 	
 	@PostMapping("/registrar")
-	public void registrar(@RequestBody Area area) {
-		servicioArea.registrar(area);
+	public AreaDTO registrar(@RequestBody AreaDTO area) throws Exception{
+		Area bean=null;
+		bean=mapper.map(area, Area.class);
+		bean=servicioArea.registrar(bean);
+		return mapper.map(bean, AreaDTO.class);
 	}
 	
 	@PutMapping("/actualizar")
-	public void actualizar(@RequestBody Area area) {
-		servicioArea.actualizar(area);
+	public AreaDTO actualizar(@RequestBody AreaDTO area) throws Exception{
+		Area bean=null;
+		bean=mapper.map(area, Area.class);
+		bean=servicioArea.actualizar(bean);
+		return mapper.map(bean, AreaDTO.class);
 	}
 	
 	@DeleteMapping("/eliminarPorId/{codigo}")
-	public void eliminar(@PathVariable("codigo") Integer cod) {
+	public void eliminar(@PathVariable("codigo") Integer cod) throws Exception{
 		servicioArea.eliminar(cod);
 	}
 }
