@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.SOA.dto.AreaDTO;
 import com.SOA.entidad.Area;
 import com.SOA.servicesImpl.AreaService;
+import com.SOA.utils.ModeloNotFoundException;
 
 @RestController
 @RequestMapping("/area")
@@ -38,7 +39,10 @@ public class AreaController {
 	@GetMapping("/consultarPorId/{codigo}")
 	public AreaDTO consulta(@PathVariable("codigo") Integer cod) throws Exception{
 		Area bean=servicioArea.buscar(cod);
-		return mapper.map(bean, AreaDTO.class);
+		if (bean==null)
+			throw new ModeloNotFoundException("Codigo no existe");
+		else
+			return mapper.map(bean, AreaDTO.class);
 	}
 	
 	@PostMapping("/registrar")
