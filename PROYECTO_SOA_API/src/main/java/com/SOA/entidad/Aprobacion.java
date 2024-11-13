@@ -22,7 +22,7 @@ public class Aprobacion {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID_Aprobacion")
-	private Integer idAprobacion;
+	private Integer IDAprobacion;
 
 	@ManyToOne	
     @JoinColumn(name = "ID_Proyecto")
@@ -37,7 +37,7 @@ public class Aprobacion {
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	@Column(name = "Fecha_Aprobacion")
-    private LocalDate fechaAprobacion;
+    private LocalDate fecha_aprobacion;
 	
 	@Column(name = "Ap_estado")
     private String estado;

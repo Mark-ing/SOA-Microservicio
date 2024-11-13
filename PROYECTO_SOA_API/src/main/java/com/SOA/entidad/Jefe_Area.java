@@ -5,7 +5,6 @@ import java.util.List;
  
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,28 +22,31 @@ import lombok.Data;
 public class Jefe_Area {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_Jefe_Area")
-    private Integer idJefeArea;
+    @Column(name = "ID_JefeArea")
+    private Integer IDJefeArea;
 
     @ManyToOne	
     @JoinColumn(name = "ID_Usuario")
     private Usuarios usuario;
     
-    @Column(name = "E_Nombre")
+    @Column(name = "JF_Nombre")
     private String nombre;
 
-    @Column(name = "E_Apellido")
+    @Column(name = "JF_Apellido")
     private String apellido;
 	
+    
+    
     @OneToMany(mappedBy = "jefe_area")
     @JsonIgnore
-    private List<Solicitud_Cambio> solicitudcambio;
+    private List<Asignacion_Proyecto> asignacion_proyecto;
+    
+    @OneToMany(mappedBy = "jefe_area")
+    @JsonIgnore
+    private List<Solicitud_Cambio> solicitud_cambio;
     
     @OneToMany(mappedBy = "jefe_area")
     @JsonIgnore
     private List<Aprobacion> aprobacion;
-    
-    @OneToMany(mappedBy = "jefe_area")
-    @JsonIgnore
-    private List<Asignacion_Proyecto> asignacionproyecto;
+ 
 }	

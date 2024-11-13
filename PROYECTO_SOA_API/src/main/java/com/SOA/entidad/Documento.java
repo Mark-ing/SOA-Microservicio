@@ -29,15 +29,15 @@ public class Documento {
     private Proyecto proyecto;
 
     @Column(name = "Ruta_Carpeta")
-    private String rutacarpeta;
+    private String ruta_carpeta;
     
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "Fecha_Creacion")
-    private LocalDate fechacreacion;
+    private LocalDate fecha_creacion;
     
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "Fecha_Modificacion")
-    private LocalDate fechamodificacion;
+    private LocalDate fecha_modificacion;
 	
 	
 }

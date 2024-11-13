@@ -1,0 +1,51 @@
+server:
+ port: 8093
+eureka:
+ client:
+  fetch-registry: true
+  register-with-eureka: true
+  service-url:
+   defaultZone: http://localhost:8761/eureka/
+ instance:
+  hostname: localhost
+spring:
+ application:
+  name: API-GATEWAY
+ cloud:
+  gateway.mvc:
+   routesMap:
+    configRoute1:
+     id: MICRO-USUARIOS-AREA
+     uri: lb://MICRO-USUARIOS
+     predicates:
+      - path=/area/**
+    configRoute2:
+     id: MICRO-USUARIOS-ROL-USUARIOS
+     uri: lb://MICRO-USUARIOS
+     predicates:
+      - path=/rol_usuarios/**
+    configRoute3:
+     id: MICRO-USUARIOS-USUARIOS-SESIONES
+     uri: lb://MICRO-USUARIOS
+     predicates:
+      - path=/usuarios_sesiones/**
+    configRoute4:
+     id: MICRO-USUARIOS-USUARIOS
+     uri: lb://MICRO-USUARIOS
+     predicates:
+      - path=/usuarios/**
+    configRoute5:
+     id: MICRO-EMPLEADOS-EMPLEADO
+     uri: lb://MICRO-EMPLEADOS
+     predicates:
+      - path=/empleado/**
+    configRoute6:
+     id: MICRO-EMPLEADOS-EQUIPO
+     uri: lb://MICRO-EMPLEADOS
+     predicates:
+      - path=/equipo/**
+    configRoute7:
+     id: MICRO-EMPLEADOS-ROL-EQUIPO
+     uri: lb://MICRO-EMPLEADOS
+     predicates:
+      - path=/rol_equipo/**

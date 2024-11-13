@@ -27,48 +27,54 @@ public class Proyecto {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_Proyecto")
-    private Integer idProyecto;
+    private Integer IDProyecto;
 
     @ManyToOne
     @JoinColumn(name = "ID_Equipo")
     private Equipo equipo;
     
-    @ManyToOne
-    @JoinColumn(name = "ID_JefePro")
-    private Jefe_Proyecto jefe_proyecto;
-
-    @Column(name = "nombre_proyecto")
-    private String nombreProyecto;
+    @Column(name = "Nombre_Proyecto")
+    private String nombre_proyecto;
 
     @Column(name = "Descripcion")
     private String descripcion;
     
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "Fecha_Inicio")
-    private LocalDate fechaInicio;
+    private LocalDate fecha_inicio;
     
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "Fecha_Fin")
-    private LocalDate fechaFin;
+    private LocalDate fecha_fin;
 
     @Column(name = "P_Estado")
     private String estado;
 
+    @ManyToOne
+    @JoinColumn(name = "ID_JefePro")
+    private Jefe_Proyecto jefe_proyecto;
+
+    
+    
+    @OneToMany(mappedBy = "proyecto")
+    @JsonIgnore
+    private List<Asignacion_Proyecto> asignacion_proyecto;
+    
+    @OneToMany(mappedBy = "proyecto")
+    @JsonIgnore
+    private List<Solicitud_Cambio> solicitud_cambio;
+    
+    @OneToMany(mappedBy = "proyecto")
+    @JsonIgnore
+    private List<Aprobacion> aprobacion;
+    
     @OneToMany(mappedBy = "proyecto")
     @JsonIgnore
     private List<Documento> documento;
 
-    @OneToMany(mappedBy = "proyecto")
-    @JsonIgnore
-    private List<Evaluacion> asignacionproyecto;
+    
 
-    @OneToMany(mappedBy = "proyecto")
-    @JsonIgnore
-    private List<Aprobacion> aprobaciones;
-
-    @OneToMany(mappedBy = "proyecto")
-    @JsonIgnore
-    private List<Solicitud_Cambio> solicitudesCambio;
+    
 
 	
 }

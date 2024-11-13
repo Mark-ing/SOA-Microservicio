@@ -1,6 +1,5 @@
 package com.SOA.entidad;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -35,6 +34,8 @@ public class Jefe_Proyecto {
 	@ManyToOne
     @JoinColumn(name = "ID_Usuarios")
     private Usuarios usuario;
+	
+	
 	
 	@OneToMany(mappedBy = "jefe_proyecto")
     @JsonIgnore
