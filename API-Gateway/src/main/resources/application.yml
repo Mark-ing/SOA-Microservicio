@@ -49,3 +49,33 @@ spring:
      uri: lb://MICRO-EMPLEADOS
      predicates:
       - path=/rol_equipo/**
+    configRoute8:
+     id: MICRO-APROBACION
+     uri: lb://MICRO-APROBACION
+     predicates:
+      - path=/aprobacion/**
+    configRoute9:
+     id: MICRO-JEFE-AREA
+     uri: lb://MICRO-JEFE-AREA
+     predicates:
+      - path=/jefe_area/**
+    configRoute10:
+     id: MICRO-JEFE-PROYECTO
+     uri: lb://MICRO-JEFE-PROYECTO
+     predicates:
+      - path=/jefe_proyecto/**
+    configRoute11:
+     id: MICRO-PROYECTO-DOCUMENTO
+     uri: lb://MICRO-PROYECTO
+     predicates:
+      - path=/documento/**
+    configRoute12:
+     id: MICRO-PROYECTO-PROYECTO
+     uri: lb://MICRO-PROYECTO
+     predicates:
+      - path=/proyecto/**
+    configRoute13:
+     id: MICRO-SOLICITUD-CAMBIO
+     uri: lb://MICRO-SOLICITUD-CAMBIO
+     predicates:
+      - path=/solicitud_cambio/**
